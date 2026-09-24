@@ -1,0 +1,17 @@
+services:
+  uav_camera:
+    build: .
+    image: uav_camera_dev:latest
+    container_name: uav_camera_dev
+    privileged: true
+    devices:
+      - /dev/video0:/dev/video0
+      - /dev/video1:/dev/video1
+    volumes:
+      - ./workspace:/workspace
+    ports:
+      - "8080:8080"
+      - "8081:8081"
+    stdin_open: true
+    tty: true
+    command: ["/bin/bash"]
